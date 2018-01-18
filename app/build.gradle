@@ -1,0 +1,104 @@
+/*
+ * Copyright (C) 2018 Oleg Kan
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+apply plugin: 'com.android.application'
+
+def versionMajor = 0
+def versionMinor = 5
+def versionPatch = 0
+def versionBuild = 0
+
+static String computeApplicationId(String suffix) {
+    String applicationId = 'com.simplaapliko.uvindex'
+    if (suffix == 'prod') {
+        return applicationId
+    } else {
+        return applicationId + '.' + suffix
+    }
+}
+
+android {
+    compileSdkVersion rootProject.ext.androidCompileSdkVersion
+    buildToolsVersion rootProject.ext.androidBuildToolsVersion
+
+    defaultConfig {
+        applicationId "com.simplaapliko.uvindex"
+        minSdkVersion rootProject.ext.androidMinSdkVersion
+        targetSdkVersion rootProject.ext.androidTargetSdkVersion
+
+        // major * 1000000 + minor * 10000 + patch * 100 + build
+        versionCode versionMajor * 1000000 + versionMinor * 10000 + versionPatch * 100 + versionBuild
+    }
+    compileOptions {
+        encoding "UTF-8"
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    buildTypes {
+        release {
+            minifyEnabled true
+            debuggable false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            zipAlignEnabled true
+        }
+        debug {
+            minifyEnabled false
+            debuggable true
+            applicationIdSuffix '.debug'
+            versionNameSuffix '-debug'
+        }
+    }
+    flavorDimensions "default"
+    productFlavors {
+        dev {
+            applicationId computeApplicationId('dev')
+            versionName "${versionMajor}.${versionMinor}.${versionPatch}.${versionBuild}"
+            resConfigs("xxhdpi")
+
+            getProps('./config/dev.config').each { p ->
+                //buildConfigField 'String', p.key, p.value
+                resValue "string", p.key, p.value
+            }
+        }
+        prod {
+            applicationId computeApplicationId('prod')
+            versionName "${versionMajor}.${versionMinor}.${versionPatch}"
+
+            getProps('./config/prod.config').each { p ->
+                //buildConfigField 'String', p.key, p.value
+                resValue "string", p.key, p.value
+            }
+        }
+    }
+}
+
+def getProps(path) {
+    Properties props = new Properties()
+    props.load(new FileInputStream(file(path)))
+    return props
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation project(':translations')
+
+    def dependencies = rootProject.ext.dependencies
+
+    implementation dependencies.appcompatV7
+    implementation dependencies.constraintLayoutV7
+
+    testImplementation dependencies.junit
+}
