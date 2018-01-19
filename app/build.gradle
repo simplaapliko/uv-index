@@ -93,6 +93,7 @@ def getProps(path) {
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation project(':data')
     implementation project(':translations')
 
     def dependencies = rootProject.ext.dependencies
