@@ -68,18 +68,24 @@ android {
             versionName "${versionMajor}.${versionMinor}.${versionPatch}.${versionBuild}"
             resConfigs("xxhdpi")
 
-            getProps('./config/dev.config').each { p ->
-                //buildConfigField 'String', p.key, p.value
-                resValue "string", p.key, p.value
+            String config = './config/dev.config'
+            if (project.file(config).exists()) {
+                getProps(config).each { p ->
+                    //buildConfigField 'String', p.key, p.value
+                    resValue "string", p.key, p.value
+                }
             }
         }
         prod {
             applicationId computeApplicationId('prod')
             versionName "${versionMajor}.${versionMinor}.${versionPatch}"
 
-            getProps('./config/prod.config').each { p ->
-                //buildConfigField 'String', p.key, p.value
-                resValue "string", p.key, p.value
+            String config = './config/prod.config'
+            if (project.file(config).exists()) {
+                getProps(config).each { p ->
+                    //buildConfigField 'String', p.key, p.value
+                    resValue "string", p.key, p.value
+                }
             }
         }
     }
