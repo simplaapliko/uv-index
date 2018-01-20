@@ -48,5 +48,8 @@ dependencies {
 
     def dependencies = rootProject.ext.dependencies
 
+    implementation dependencies.rxJava
+    implementation dependencies.supportAnnotations
+
     testImplementation dependencies.junit
 }

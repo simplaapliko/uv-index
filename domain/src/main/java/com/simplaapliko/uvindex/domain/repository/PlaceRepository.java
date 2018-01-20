@@ -14,15 +14,25 @@
  * limitations under the License.
  */
 
-apply plugin: 'java-library'
+package com.simplaapliko.uvindex.domain.repository;
 
-sourceCompatibility = JavaVersion.VERSION_1_8
-targetCompatibility = JavaVersion.VERSION_1_8
+import com.simplaapliko.uvindex.domain.model.Place;
 
-dependencies {
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
+import java.util.List;
 
-    def dependencies = rootProject.ext.dependencies
+import io.reactivex.Completable;
+import io.reactivex.Maybe;
+import io.reactivex.Single;
 
-    implementation dependencies.rxJava
+public interface PlaceRepository {
+
+    Maybe<Place> placeById(long id);
+
+    Single<List<Place>> allPlaces();
+
+    Completable add(Place place);
+
+    Completable update(Place place);
+
+    Completable delete(long id);
 }

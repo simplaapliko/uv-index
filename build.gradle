@@ -17,14 +17,14 @@
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
 
 buildscript {
-    
+
     repositories {
         google()
         jcenter()
     }
     dependencies {
         classpath 'com.android.tools.build:gradle:3.0.1'
-        
+
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files
     }
@@ -48,14 +48,20 @@ ext {
     constraintLayoutVersion = '1.0.2'
     playServicesVersion = '11.8.0'
 
+    // Libraries
+    rxJavaVersion = '2.1.8'
+
     //Testing
     jUnitVersion = '4.12'
 
     dependencies = [
-        appcompatV7: "com.android.support:appcompat-v7:${androidSupportVersion}",
-        constraintLayoutV7: "com.android.support.constraint:constraint-layout:${constraintLayoutVersion}",
+            appcompatV7: "com.android.support:appcompat-v7:${androidSupportVersion}",
+            constraintLayoutV7: "com.android.support.constraint:constraint-layout:${constraintLayoutVersion}",
+            supportAnnotations: "com.android.support:support-annotations:${androidSupportVersion}",
 
-        junit: "junit:junit:${jUnitVersion}",
+            rxJava: "io.reactivex.rxjava2:rxjava:${rxJavaVersion}",
+
+            junit: "junit:junit:${jUnitVersion}",
     ]
 }
 
