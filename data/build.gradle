@@ -54,3 +54,11 @@ dependencies {
     testImplementation dependencies.junit
     testImplementation dependencies.mockito
 }
+
+tasks.withType(Test) {
+    testLogging {
+        exceptionFormat "full"
+        events "started", "skipped", "passed", "failed"
+        showStandardStreams true
+    }
+}
