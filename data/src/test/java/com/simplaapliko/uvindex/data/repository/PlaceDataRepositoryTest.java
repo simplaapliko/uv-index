@@ -105,8 +105,8 @@ public class PlaceDataRepositoryTest {
 
     @Test
     public void allPlaces_noData() {
-        List<Place> mockPlaces = new ArrayList<>();
-        List<PlaceEntity> mockPlaceEntities = new ArrayList<>();
+        List<Place> mockPlaces = null;
+        List<PlaceEntity> mockPlaceEntities = null;
 
         when(mockPlaceDataSource.select()).thenReturn(mockPlaceEntities);
         when(mockPlaceEntityMapper.toModels(mockPlaceEntities)).thenReturn(mockPlaces);
