@@ -39,4 +39,6 @@ jobs:
           key: v1-dependencies-{{ checksum "build.gradle" }}
 
       # run tests!
-      - run: gradle test
+      - run: gradle testDevDebugUnitTest
+      - run: gradle :data:test
+      - run: gradle :domain:test
