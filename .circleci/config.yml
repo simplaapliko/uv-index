@@ -1,7 +1,3 @@
-#
-# Build configuration for Circle CI
-#
-
 general:
     artifacts:
         - /home/ubuntu/simplaapliko/uvindex/app/build/outputs/apk/
@@ -31,6 +27,3 @@ dependencies:
 test:
     override:
         - ./gradlew testDevDebugUnitTest :data:test :domain:test
-
-        # copy the build outputs to artifacts
-        - cp -r app/build/outputs $CIRCLE_ARTIFACTS
