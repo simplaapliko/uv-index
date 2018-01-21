@@ -49,6 +49,8 @@ ext {
     playServicesVersion = '11.8.0'
 
     // Libraries
+    gsonVersion = '2.8.2'
+    retrofitVersion = '2.3.0'
     rxJavaVersion = '2.1.8'
 
     //Testing
@@ -61,6 +63,9 @@ ext {
             constraintLayoutV7: "com.android.support.constraint:constraint-layout:${constraintLayoutVersion}",
             supportAnnotations: "com.android.support:support-annotations:${androidSupportVersion}",
 
+            gson: "com.google.code.gson:gson:${gsonVersion}",
+            adapterRxJava: "com.squareup.retrofit2:adapter-rxjava2:${retrofitVersion}",
+            retrofit: "com.squareup.retrofit2:retrofit:${retrofitVersion}",
             rxJava: "io.reactivex.rxjava2:rxjava:${rxJavaVersion}",
 
             junit: "junit:junit:${jUnitVersion}",

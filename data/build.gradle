@@ -48,8 +48,11 @@ dependencies {
 
     def dependencies = rootProject.ext.dependencies
 
-    implementation dependencies.rxJava
+    implementation dependencies.adapterRxJava
+    implementation dependencies.gson
     implementation dependencies.supportAnnotations
+    implementation dependencies.retrofit
+    implementation dependencies.rxJava
 
     testImplementation dependencies.junit
     testImplementation dependencies.mockito
