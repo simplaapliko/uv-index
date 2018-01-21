@@ -58,7 +58,8 @@ public class PlaceDataRepositoryTest {
         when(mockPlaceEntityMapper.toModel(mockPlaceEntity)).thenReturn(mockPlace);
 
         TestObserver<Place> testObserver = new TestObserver<>();
-        mPlaceDataRepository.placeById(placeId).subscribe(testObserver);
+        mPlaceDataRepository.placeById(placeId)
+                .subscribe(testObserver);
 
         testObserver.awaitTerminalEvent();
         testObserver.assertComplete();
@@ -73,7 +74,8 @@ public class PlaceDataRepositoryTest {
         when(mockPlaceDataSource.placeById(placeId)).thenReturn(null);
 
         TestObserver<Place> testObserver = new TestObserver<>();
-        mPlaceDataRepository.placeById(placeId).subscribe(testObserver);
+        mPlaceDataRepository.placeById(placeId)
+                .subscribe(testObserver);
 
         testObserver.awaitTerminalEvent();
         testObserver.assertComplete();
@@ -94,7 +96,8 @@ public class PlaceDataRepositoryTest {
         when(mockPlaceEntityMapper.toModels(mockPlaceEntities)).thenReturn(mockPlaces);
 
         TestObserver<List<Place>> testObserver = new TestObserver<>();
-        mPlaceDataRepository.allPlaces().subscribe(testObserver);
+        mPlaceDataRepository.allPlaces()
+                .subscribe(testObserver);
 
         testObserver.awaitTerminalEvent();
         testObserver.assertComplete();
@@ -112,7 +115,8 @@ public class PlaceDataRepositoryTest {
         when(mockPlaceEntityMapper.toModels(mockPlaceEntities)).thenReturn(mockPlaces);
 
         TestObserver<List<Place>> testObserver = new TestObserver<>();
-        mPlaceDataRepository.allPlaces().subscribe(testObserver);
+        mPlaceDataRepository.allPlaces()
+                .subscribe(testObserver);
 
         testObserver.awaitTerminalEvent();
         testObserver.assertComplete();
@@ -131,7 +135,8 @@ public class PlaceDataRepositoryTest {
         when(mockPlaceEntityMapper.toEntity(mockPlace)).thenReturn(mockPlaceEntity);
 
         TestObserver<List<Place>> testObserver = new TestObserver<>();
-        mPlaceDataRepository.add(mockPlace).subscribe(testObserver);
+        mPlaceDataRepository.add(mockPlace)
+                .subscribe(testObserver);
 
         testObserver.awaitTerminalEvent();
         testObserver.assertComplete();
@@ -151,7 +156,8 @@ public class PlaceDataRepositoryTest {
         when(mockPlaceEntityMapper.toEntity(mockPlace)).thenReturn(mockPlaceEntity);
 
         TestObserver<List<Place>> testObserver = new TestObserver<>();
-        mPlaceDataRepository.add(mockPlace).subscribe(testObserver);
+        mPlaceDataRepository.add(mockPlace)
+                .subscribe(testObserver);
 
         testObserver.awaitTerminalEvent();
         testObserver.assertComplete();
@@ -167,7 +173,8 @@ public class PlaceDataRepositoryTest {
         when(mockPlaceDataSource.delete(placeId)).thenReturn(rowCount);
 
         TestObserver<List<Place>> testObserver = new TestObserver<>();
-        mPlaceDataRepository.delete(placeId).subscribe(testObserver);
+        mPlaceDataRepository.delete(placeId)
+                .subscribe(testObserver);
 
         testObserver.awaitTerminalEvent();
         testObserver.assertComplete();
@@ -184,7 +191,8 @@ public class PlaceDataRepositoryTest {
         when(mockPlaceDataSource.delete(placeId)).thenReturn(rowCount);
 
         TestObserver<List<Place>> testObserver = new TestObserver<>();
-        mPlaceDataRepository.delete(placeId).subscribe(testObserver);
+        mPlaceDataRepository.delete(placeId)
+                .subscribe(testObserver);
 
         testObserver.awaitTerminalEvent();
         testObserver.assertComplete();
@@ -203,7 +211,8 @@ public class PlaceDataRepositoryTest {
         when(mockPlaceEntityMapper.toEntity(mockPlace)).thenReturn(mockPlaceEntity);
 
         TestObserver<List<Place>> testObserver = new TestObserver<>();
-        mPlaceDataRepository.update(mockPlace).subscribe(testObserver);
+        mPlaceDataRepository.update(mockPlace)
+                .subscribe(testObserver);
 
         testObserver.awaitTerminalEvent();
         testObserver.assertComplete();
@@ -223,7 +232,8 @@ public class PlaceDataRepositoryTest {
         when(mockPlaceEntityMapper.toEntity(mockPlace)).thenReturn(mockPlaceEntity);
 
         TestObserver<List<Place>> testObserver = new TestObserver<>();
-        mPlaceDataRepository.update(mockPlace).subscribe(testObserver);
+        mPlaceDataRepository.update(mockPlace)
+                .subscribe(testObserver);
 
         testObserver.awaitTerminalEvent();
         testObserver.assertComplete();

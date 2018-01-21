@@ -39,7 +39,9 @@ public abstract class GoogleApiResponse {
     /** indicates that no data could be found */
     public static final String STATUS_ZERO_RESULTS = "ZERO_RESULTS";
 
-    @SerializedName("status") @Expose private String status;
+    @SerializedName("status")
+    @Expose
+    private String status;
 
     public String getStatus() {
         return status;

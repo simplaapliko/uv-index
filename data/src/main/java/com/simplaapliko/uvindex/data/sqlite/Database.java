@@ -111,10 +111,7 @@ public class Database extends SQLiteOpenHelper {
         SQLiteDatabase db = getWritableDatabase();
         db.beginTransaction();
         try {
-            id = db.insertOrThrow(
-                    table,
-                    null,
-                    cv);
+            id = db.insertOrThrow(table, null, cv);
             db.setTransactionSuccessful();
             //LogManager.log(TAG, "insert: " + table + ", id = " + id + ", cv = " + cv);
         } catch (SQLException e) {
@@ -145,11 +142,7 @@ public class Database extends SQLiteOpenHelper {
         SQLiteDatabase db = getWritableDatabase();
         db.beginTransaction();
         try {
-            rowsAffected = db.update(
-                    table,
-                    cv,
-                    selection,
-                    null);
+            rowsAffected = db.update(table, cv, selection, null);
             db.setTransactionSuccessful();
         } catch (SQLException e) {
             //LogManager.log(TAG, e.getClass() + " error: " + e.getMessage());
@@ -163,7 +156,7 @@ public class Database extends SQLiteOpenHelper {
     }
 
     public int delete(String table, long id) {
-        return delete(table, BaseColumns._ID + "=?", new String[]{ String.valueOf(id)});
+        return delete(table, BaseColumns._ID + "=?", new String[] { String.valueOf(id) });
     }
 
     public int delete(String table, String whereClause, String[] whereArgs) {
@@ -172,10 +165,7 @@ public class Database extends SQLiteOpenHelper {
         SQLiteDatabase db = getWritableDatabase();
         db.beginTransaction();
         try {
-            rowsAffected = db.delete(
-                    table,
-                    whereClause,
-                    whereArgs);
+            rowsAffected = db.delete(table, whereClause, whereArgs);
             db.setTransactionSuccessful();
         } catch (SQLException e) {
             //LogManager.log(TAG, e.getClass() + " error: " + e.getMessage());

@@ -27,9 +27,15 @@ public class TimeZoneResponse {
     /** indicates that your request was unsuccessful */
     public static final String STATUS_FAILED = "FAILED";
 
-    @SerializedName("status") @Expose private String status;
-    @SerializedName("message") @Expose private String message;
-    @SerializedName("zoneName") @Expose private String zoneName;
+    @SerializedName("status")
+    @Expose
+    private String status;
+    @SerializedName("message")
+    @Expose
+    private String message;
+    @SerializedName("zoneName")
+    @Expose
+    private String zoneName;
 
     public String getStatus() {
         return status;

@@ -61,8 +61,8 @@ public class TimeZoneDbApiSourceTest {
     }
 
     public static Result<TimeZoneResponse> fakeResult(int code) {
-        Response<TimeZoneResponse> response = Response.error(code,
-                ResponseBody.create(MediaType.parse(""), new byte[0]));
+        Response<TimeZoneResponse> response =
+                Response.error(code, ResponseBody.create(MediaType.parse(""), new byte[0]));
         return Result.response(response);
     }
 

@@ -21,11 +21,21 @@ import com.google.gson.annotations.SerializedName;
 
 public class TimeZoneResponse extends GoogleApiResponse {
 
-    @SerializedName("dstOffset") @Expose private Integer dstOffset;
-    @SerializedName("rawOffset") @Expose private Integer rawOffset;
-    @SerializedName("errorMessage") @Expose private String errorMessage;
-    @SerializedName("timeZoneId") @Expose private String timeZoneId;
-    @SerializedName("timeZoneName") @Expose private String timeZoneName;
+    @SerializedName("dstOffset")
+    @Expose
+    private Integer dstOffset;
+    @SerializedName("rawOffset")
+    @Expose
+    private Integer rawOffset;
+    @SerializedName("errorMessage")
+    @Expose
+    private String errorMessage;
+    @SerializedName("timeZoneId")
+    @Expose
+    private String timeZoneId;
+    @SerializedName("timeZoneName")
+    @Expose
+    private String timeZoneName;
 
     public Integer getDstOffset() {
         return dstOffset;
