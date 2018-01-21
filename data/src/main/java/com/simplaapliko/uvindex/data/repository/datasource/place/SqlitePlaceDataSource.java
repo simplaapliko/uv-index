@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.simplaapliko.uvindex.data.repository.datasource;
+package com.simplaapliko.uvindex.data.repository.datasource.place;
 
 import android.database.Cursor;
 import android.support.annotation.NonNull;
@@ -28,17 +28,17 @@ import com.simplaapliko.uvindex.data.sqlite.table.PlaceTable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class PlaceSqliteDataSource implements PlaceDataSource {
+public class SqlitePlaceDataSource implements PlaceDataSource {
 
     private final Database mDatabase;
 
-    public PlaceSqliteDataSource(Database database) {
+    public SqlitePlaceDataSource(Database database) {
         mDatabase = database;
     }
 
     @NonNull
     @Override
-    public List<PlaceEntity> select() {
+    public List<PlaceEntity> allPlaces() {
         List<PlaceEntity> list = new ArrayList<>();
 
         String query = PlaceTable.QUERY + " ORDER BY " + PlaceTable.PLACE_ORDER + ", "
@@ -61,7 +61,7 @@ public class PlaceSqliteDataSource implements PlaceDataSource {
 
     @NonNull
     @Override
-    public List<PlaceEntity> selectOrderByName() {
+    public List<PlaceEntity> allPlacesOrderedByName() {
         List<PlaceEntity> list = new ArrayList<>();
 
         String query = PlaceTable.QUERY + " ORDER BY " + PlaceTable.PLACE_NAME;
@@ -83,7 +83,7 @@ public class PlaceSqliteDataSource implements PlaceDataSource {
 
     @Nullable
     @Override
-    public PlaceEntity selectById(long id) {
+    public PlaceEntity placeById(long id) {
         PlaceEntity entity = null;
 
         String query =
@@ -103,7 +103,7 @@ public class PlaceSqliteDataSource implements PlaceDataSource {
     }
 
     @Override
-    public long insert(@Nullable PlaceEntity entity) {
+    public long save(@Nullable PlaceEntity entity) {
         return mDatabase.insert(PlaceTable.TABLE, new PlaceSqliteEntity(entity));
     }
 

@@ -18,7 +18,7 @@ package com.simplaapliko.uvindex.data.repository;
 
 import com.simplaapliko.uvindex.data.entity.PlaceEntity;
 import com.simplaapliko.uvindex.data.entity.mapper.PlaceEntityMapper;
-import com.simplaapliko.uvindex.data.repository.datasource.PlaceDataSource;
+import com.simplaapliko.uvindex.data.repository.datasource.place.PlaceDataSource;
 import com.simplaapliko.uvindex.domain.model.Place;
 
 import org.junit.Before;
@@ -54,7 +54,7 @@ public class PlaceDataRepositoryTest {
         PlaceEntity mockPlaceEntity = mock(PlaceEntity.class);
 
         long placeId = 7L;
-        when(mockPlaceDataSource.selectById(placeId)).thenReturn(mockPlaceEntity);
+        when(mockPlaceDataSource.placeById(placeId)).thenReturn(mockPlaceEntity);
         when(mockPlaceEntityMapper.toModel(mockPlaceEntity)).thenReturn(mockPlace);
 
         TestObserver<Place> testObserver = new TestObserver<>();
@@ -70,7 +70,7 @@ public class PlaceDataRepositoryTest {
     @Test
     public void placeById_notFound() {
         long placeId = 7L;
-        when(mockPlaceDataSource.selectById(placeId)).thenReturn(null);
+        when(mockPlaceDataSource.placeById(placeId)).thenReturn(null);
 
         TestObserver<Place> testObserver = new TestObserver<>();
         mPlaceDataRepository.placeById(placeId).subscribe(testObserver);
@@ -90,7 +90,7 @@ public class PlaceDataRepositoryTest {
         PlaceEntity mockPlaceEntity = mock(PlaceEntity.class);
         List<PlaceEntity> mockPlaceEntities = Arrays.asList(mockPlaceEntity);
 
-        when(mockPlaceDataSource.select()).thenReturn(mockPlaceEntities);
+        when(mockPlaceDataSource.allPlaces()).thenReturn(mockPlaceEntities);
         when(mockPlaceEntityMapper.toModels(mockPlaceEntities)).thenReturn(mockPlaces);
 
         TestObserver<List<Place>> testObserver = new TestObserver<>();
@@ -108,7 +108,7 @@ public class PlaceDataRepositoryTest {
         List<Place> mockPlaces = new ArrayList<>();
         List<PlaceEntity> mockPlaceEntities = new ArrayList<>();
 
-        when(mockPlaceDataSource.select()).thenReturn(mockPlaceEntities);
+        when(mockPlaceDataSource.allPlaces()).thenReturn(mockPlaceEntities);
         when(mockPlaceEntityMapper.toModels(mockPlaceEntities)).thenReturn(mockPlaces);
 
         TestObserver<List<Place>> testObserver = new TestObserver<>();
@@ -127,7 +127,7 @@ public class PlaceDataRepositoryTest {
         PlaceEntity mockPlaceEntity = mock(PlaceEntity.class);
 
         long placeId = 7L;
-        when(mockPlaceDataSource.insert(mockPlaceEntity)).thenReturn(placeId);
+        when(mockPlaceDataSource.save(mockPlaceEntity)).thenReturn(placeId);
         when(mockPlaceEntityMapper.toEntity(mockPlace)).thenReturn(mockPlaceEntity);
 
         TestObserver<List<Place>> testObserver = new TestObserver<>();
@@ -147,7 +147,7 @@ public class PlaceDataRepositoryTest {
         PlaceEntity mockPlaceEntity = null;
 
         long placeId = 7L;
-        when(mockPlaceDataSource.insert(null)).thenReturn(placeId);
+        when(mockPlaceDataSource.save(null)).thenReturn(placeId);
         when(mockPlaceEntityMapper.toEntity(mockPlace)).thenReturn(mockPlaceEntity);
 
         TestObserver<List<Place>> testObserver = new TestObserver<>();

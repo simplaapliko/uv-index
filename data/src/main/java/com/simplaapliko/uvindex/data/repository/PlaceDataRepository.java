@@ -18,7 +18,7 @@ package com.simplaapliko.uvindex.data.repository;
 
 import com.simplaapliko.uvindex.data.entity.PlaceEntity;
 import com.simplaapliko.uvindex.data.entity.mapper.PlaceEntityMapper;
-import com.simplaapliko.uvindex.data.repository.datasource.PlaceDataSource;
+import com.simplaapliko.uvindex.data.repository.datasource.place.PlaceDataSource;
 import com.simplaapliko.uvindex.domain.model.Place;
 import com.simplaapliko.uvindex.domain.repository.PlaceRepository;
 
@@ -41,14 +41,14 @@ public class PlaceDataRepository implements PlaceRepository {
 
     @Override
     public Maybe<Place> placeById(long id) {
-        return Maybe.fromCallable(() -> mPlaceDataSource.selectById(id))
+        return Maybe.fromCallable(() -> mPlaceDataSource.placeById(id))
                 .map(mPlaceEntityMapper::toModel)
                 .onErrorResumeNext(Maybe.empty());
     }
 
     @Override
     public Single<List<Place>> allPlaces() {
-        return Single.fromCallable(mPlaceDataSource::select)
+        return Single.fromCallable(mPlaceDataSource::allPlaces)
                 .map(mPlaceEntityMapper::toModels);
     }
 
@@ -56,7 +56,7 @@ public class PlaceDataRepository implements PlaceRepository {
     public Completable add(Place place) {
         return Completable.fromCallable(() -> {
             PlaceEntity entity = mPlaceEntityMapper.toEntity(place);
-            return mPlaceDataSource.insert(entity);
+            return mPlaceDataSource.save(entity);
         });
     }
 

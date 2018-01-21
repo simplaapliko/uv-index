@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.simplaapliko.uvindex.data.repository.datasource;
+package com.simplaapliko.uvindex.data.repository.datasource.place;
 
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -26,40 +26,40 @@ import java.util.List;
 public interface PlaceDataSource {
 
     /**
-     * Returns the non-null list of places.
+     * Returns the non-null list of all places.
      *
-     * @return the list of places
+     * @return the list of all places
      */
     @NonNull
-    List<PlaceEntity> select();
+    List<PlaceEntity> allPlaces();
 
     /**
-     * Returns the non-null list of places ordered by name.
+     * Returns the non-null list of all places ordered by name.
      *
-     * @return the list of places ordered by name
+     * @return the list of all places ordered by name
      */
     @NonNull
-    List<PlaceEntity> selectOrderByName();
+    List<PlaceEntity> allPlacesOrderedByName();
 
     /**
-     * Returns the entity for the provided id.
+     * Returns the place for the provided id.
      *
-     * @param id id of the entity to return
-     * @return the entity for the provided id
+     * @param id id of the place to return
+     * @return the place for the provided id
      */
     @Nullable
-    PlaceEntity selectById(final long id);
+    PlaceEntity placeById(final long id);
 
     /**
-     * Returns id of the inserted entity. Returns -1 if entity is null.
+     * Returns id of the inserted place. Returns -1 if place is null.
      *
-     * @param entity entity to be inserted
-     * @return id of the inserted entity
+     * @param entity place to be inserted
+     * @return id of the inserted place
      */
-    long insert(@Nullable final PlaceEntity entity);
+    long save(@Nullable final PlaceEntity entity);
 
     /**
-     * Returns the count of the updated entities. Returns 0 if entity is null.
+     * Returns the count of the updated entities. Returns 0 if place is null.
      *
      * @param entity entity to be updated
      * @return the count of the updated entities
@@ -67,9 +67,9 @@ public interface PlaceDataSource {
     int update(@Nullable final PlaceEntity entity);
 
     /**
-     * Returns the count of the deleted entities. Returns 0 if entity is null.
+     * Returns the count of the deleted entities. Returns 0 if place is null.
      *
-     * @param entity entity to be deleted
+     * @param entity place to be deleted
      * @return the count of the deleted entities
      */
     int delete(@Nullable final PlaceEntity entity);
@@ -77,7 +77,7 @@ public interface PlaceDataSource {
     /**
      * Returns the count of the deleted entities.
      *
-     * @param id id of the entity to delete
+     * @param id id of the place to delete
      * @return the count of the deleted entities
      */
     int delete(final long id);

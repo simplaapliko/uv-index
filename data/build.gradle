@@ -53,6 +53,7 @@ dependencies {
 
     testImplementation dependencies.junit
     testImplementation dependencies.mockito
+    testImplementation dependencies.truth
 }
 
 tasks.withType(Test) {

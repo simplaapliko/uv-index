@@ -54,6 +54,7 @@ ext {
     //Testing
     jUnitVersion = '4.12'
     mockitoVersion = '2.13.0'
+    truthVersion = '0.39'
 
     dependencies = [
             appcompatV7: "com.android.support:appcompat-v7:${androidSupportVersion}",
@@ -63,7 +64,8 @@ ext {
             rxJava: "io.reactivex.rxjava2:rxjava:${rxJavaVersion}",
 
             junit: "junit:junit:${jUnitVersion}",
-            mockito: "org.mockito:mockito-core:${mockitoVersion}"
+            mockito: "org.mockito:mockito-core:${mockitoVersion}",
+            truth: "com.google.truth:truth:${truthVersion}"
     ]
 }
 

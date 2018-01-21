@@ -16,24 +16,49 @@
 
 package com.simplaapliko.uvindex.data.entity.mapper;
 
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
+
 import com.simplaapliko.uvindex.data.entity.PlaceEntity;
 import com.simplaapliko.uvindex.domain.model.Place;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class PlaceEntityMapper {
 
-    public List<Place> toModels(List<PlaceEntity> entities) {
-        List<Place> places = new ArrayList<>();
+    /**
+     * Maps list of {@link PlaceEntity} to list of {@link Place}.
+     * If the list of {@link PlaceEntity} is null, returns {@link Collections#emptyList()}
+     *
+     * @param entities list of {@link PlaceEntity} to be mapped to {@link Place}
+     * @return the list of mapped {@link Place}
+     */
+    @NonNull
+    public List<Place> toModels(@Nullable List<PlaceEntity> entities) {
+        List<Place> places;
         if (entities != null) {
+            places = new ArrayList<>();
             for (PlaceEntity entity : entities) {
-                places.add(toModel(entity));
+                Place place = toModel(entity);
+                if (place != null) {
+                    places.add(place);
+                }
             }
+        } else {
+            places = Collections.emptyList();
         }
         return places;
     }
 
+    /**
+     * Maps {@link PlaceEntity} to {@link Place}.
+     *
+     * @param entity {@link PlaceEntity} to be mapped to {@link Place}
+     * @return the mapped {@link Place} or null
+     */
+    @Nullable
     public Place toModel(PlaceEntity entity) {
         Place place = null;
         if (entity != null) {
@@ -43,11 +68,19 @@ public class PlaceEntityMapper {
                     .setCountry(entity.getCountry())
                     .setLatitude(entity.getLatitude())
                     .setLongitude(entity.getLongitude())
+                    .setTimeZoneId(entity.getTimeZoneId())
                     .build();
         }
         return place;
     }
 
+    /**
+     * Maps {@link Place} to {@link PlaceEntity}.
+     *
+     * @param model {@link Place} to be mapped to {@link PlaceEntity}
+     * @return the mapped {@link PlaceEntity} or null
+     */
+    @Nullable
     public PlaceEntity toEntity(Place model) {
         PlaceEntity entity = null;
         if (model != null) {
@@ -57,6 +90,7 @@ public class PlaceEntityMapper {
                     .setCountry(model.getCountry())
                     .setLatitude(model.getLatitude())
                     .setLongitude(model.getLongitude())
+                    .setTimeZoneId(model.getTimeZoneId())
                     .build();
         }
         return entity;
